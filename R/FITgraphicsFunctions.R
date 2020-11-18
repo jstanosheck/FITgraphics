@@ -8,6 +8,9 @@
 #' @param fileName - String of file path corresponding to the FIT file. File must be .fit extension.
 #'
 #' @export
+#'
+#' @return Returns a data.frame ordered based on the timestamp of each instance.
+#' Each column is named and represents the different variables e.g. heart_rate.
 
 getFit <- function(fileName){
 #Compatability Checks
