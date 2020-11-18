@@ -39,6 +39,10 @@ getFit <- function(fileName){
     bind_rows() %>%
     arrange(timestamp)
 
-  return(out_records)
+  #extract the individual record names
+  #these are the available datafields for user interaction
+  records <- names(out_records)
+
+  return(list(data = out_records, record_names = records))
 }
 
