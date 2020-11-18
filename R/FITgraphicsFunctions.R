@@ -46,3 +46,27 @@ getFit <- function(fileName){
   return(list(data = out_records, record_names = records))
 }
 
+
+#' plotFit
+#'
+#' @description
+#'
+#' @param fitFile -
+#' @param varName -
+#'
+#' @export
+#'
+#' @return
+
+plotFit <- function(fitFile, varName){
+  #makes a vector out of the data from specified data field
+  dataVector <- as.vector(unlist(fitFile[varName]))
+
+  #output average speed
+  average <- mean(dataVector)
+
+  #This will plot a graphic of the varName vs time
+  ggplot(fitFile, aes(x = timestamp, y = dataVector)) +
+    geom_line(size = 0.5, color="orange") +
+    geom_hline(yintercept = average, color = "blue")
+}

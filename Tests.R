@@ -2,6 +2,7 @@
 
 library(FITfileR)
 library(dplyr)
+library(ggplot2)
 
 #check if the file exists
 file.exists("/Users/jacobstanosheck/Desktop/TestRun.fit")
@@ -19,14 +20,39 @@ all_test_records <- records(test_file) %>%
 
 
 #plot speed vs time
-ave_speed <- mean(all_test_records$speed * 2.23694)
+ave_speed <- mean(all_test_records$altitude)
 
 
-ggplot(all_test_records, aes(x=timestamp, y=((speed)^-1 * 26.822))) +
+ggplot(all_test_records, aes(x=timestamp, y=altitude)) +
   geom_line(size = 0.5, color="orange")  +
   geom_hline(yintercept = ave_speed, color="blue") +
-  scale_y_continuous(name = "Speed (miles per hour)",
-   trans = 'reverse') +
-  geom_text()
+  scale_y_continuous(name = "Speed (m/s)") + xlab("Time of Day (HH:MM)")
 
 
+#make diff_time
+time_diff <- difftime(max(all_test_records$timestamp), min(all_test_records$timestamp), units = "min")
+
+
+#convert column of df to vector
+newV <- fitFile[varName]
+
+newV <- as.vector(unlist(newVector))
+
+
+
+
+test_func <- function(fitFile, varName){
+  #set varName as string
+  #varName <- as.character(varName)
+  newVector <- fitFile[varName]
+
+  newVector <- as.vector(unlist(newVector))
+
+  #output average speed
+  aveSpeed <- mean(newVector)
+
+  return(aveSpeed)
+}
+
+#test the test_func
+test_func(all_test_records, varName = "speed")
