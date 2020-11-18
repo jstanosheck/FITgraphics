@@ -6,6 +6,9 @@ library(dplyr)
 #check if the file exists
 file.exists("/Users/jacobstanosheck/Desktop/TestRun.fit")
 
+#check if file extension if of .fit
+grepl("\\.fit$", "/Users/jacobstanosheck/Desktop/TestRun.fit")
+
 #load the file using the readFitFile function
 test_file <- readFitFile("/Users/jacobstanosheck/Desktop/TestRun.fit")
 
@@ -23,6 +26,7 @@ ggplot(all_test_records, aes(x=timestamp, y=((speed)^-1 * 26.822))) +
   geom_line(size = 0.5, color="orange")  +
   geom_hline(yintercept = ave_speed, color="blue") +
   scale_y_continuous(name = "Speed (miles per hour)",
-   trans = 'reverse')
+   trans = 'reverse') +
+  geom_text()
 
 

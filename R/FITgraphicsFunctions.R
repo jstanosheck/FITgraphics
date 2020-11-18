@@ -5,12 +5,37 @@
 #' if it exist, collects data and outputs a Data Frame containing all data in
 #' the file.
 #'
-#' @param fileName - whatever the first param is
-#' @param parameter2 - whatever the second param is
+#' @param fileName - String of file path corresponding to the FIT file. File must be .fit extension.
 #'
 #' @export
 
-importFit <- function(fileName, param2){
-  #this will return a dataframe containing the data from the input
+getFit <- function(fileName){
+#Compatability Checks
+###################################################
+  #check that fileName is of type string
+  if (is.character(fileName) == FALSE){
+    stop("Argument fileName must be a character string.")
+  }
+  #Check if the file actually exists in the path from parameter 1
+  if (file.exists(fileName) == FALSE){
+    stop("File does not exist at given file path.")
+  }
+  #check if file is of proper type
+  if (grepl("\\.fit$", fileName) == FALSE){
+    stop("File must have the extension .fit")
+  }
+
+##################################################
+  #Start of function file loading
+##################################################
+  #load the file using the readFitFile function
+  out_file <- readFitFile(fileName = fileName)
+
+  #use the dplyr library to bind the records together by the timestamp
+  out_records <- records(out_file) %>%
+    bind_rows() %>%
+    arrange(timestamp)
+
+  return(out_records)
 }
 
