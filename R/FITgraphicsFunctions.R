@@ -43,7 +43,10 @@ getFit <- function(fileName){
   #these are the available datafields for user interaction
   records <- names(out_records)
 
-  return(list(data = out_records, record_names = records))
+  #extract session data from out_file
+  session <- getMessagesByType(out_file, "session")
+
+  return(list(data = out_records, records = records, session = session))
 }
 
 
@@ -51,22 +54,57 @@ getFit <- function(fileName){
 #'
 #' @description
 #'
-#' @param fitFile -
-#' @param varName -
+#' @param fitFile - {Dataframe} Required parameters: data, records
+#' @param varName - {Character}
 #'
 #' @export
 #'
 #' @return
 
 plotFit <- function(fitFile, varName){
+  #compatibility checks
+########################################
+  #check if varName is a character string
+  if (is.character(varName) == FALSE){
+    stop("Check type for varName; must be a character")
+  }
+  #check data class of fitFile
+  if (data.class(fitFile) != "list"){
+    stop("Argument fitFile must be of class list")
+  }
+  #check to see if varName is in the list of names from fitFile
+  if ((varName %in% fitFile$records) == FALSE){
+    stop("The varName provided is not a variable in fitFile.")
+  }
+
+#plotting of data
+###########################################################
   #makes a vector out of the data from specified data field
-  dataVector <- as.vector(unlist(fitFile[varName]))
+  dataVector <- as.vector(unlist(fitFile$data[varName]))
 
   #output average speed
   average <- mean(dataVector)
 
   #This will plot a graphic of the varName vs time
-  ggplot(fitFile, aes(x = timestamp, y = dataVector)) +
+  g <- ggplot(fitFile$data, aes(x = timestamp, y = dataVector)) +
     geom_line(size = 0.5, color="orange") +
     geom_hline(yintercept = average, color = "blue")
+
+  return(g)
 }
+
+#' mapFit
+#'
+#' @description
+#'
+#' @param fitFile - {Dataframe} Required parameters: data, records
+#' @param varName - {Character}
+#'
+#' @export
+#'
+#' @return
+
+mapFit <- function(){
+
+}
+

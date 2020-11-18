@@ -20,7 +20,7 @@ all_test_records <- records(test_file) %>%
 
 
 #plot speed vs time
-ave_speed <- mean(all_test_records$altitude)
+ave_speed <- mean(all_test_records$speed)
 
 
 ggplot(all_test_records, aes(x=timestamp, y=altitude)) +
@@ -56,3 +56,20 @@ test_func <- function(fitFile, varName){
 
 #test the test_func
 test_func(all_test_records, varName = "speed")
+
+
+
+
+
+##############################
+#test getFit() output
+test_getfit <- getFit("/Users/jacobstanosheck/Desktop/TestRun.fit")
+data.class(test_getfit)
+
+
+#test plotFit() output
+plotFit(test_getfit, "speed")
+
+
+
+
