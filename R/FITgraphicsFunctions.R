@@ -58,6 +58,7 @@ getFit <- function(fileName){
 #' @param varName - {Character}
 #'
 #' @export
+#' @import ggplot2
 #'
 #' @return
 
@@ -98,9 +99,9 @@ plotFit <- function(fitFile, varName){
 #' @description
 #'
 #' @param fitFile - {Dataframe} Required parameters: data, records
-#' @param varName - {Character}
 #'
 #' @export
+#' @import leaflet
 #'
 #' @return
 
