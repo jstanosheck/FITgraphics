@@ -71,5 +71,19 @@ data.class(test_getfit)
 plotFit(test_getfit, "speed")
 
 
+#testing for coordinate selection
+coordinates <- test_getfit$data %>%
+  select(position_long, position_lat)
+
+#generate the map
+map <- coordinates %>%
+  as.matrix() %>%
+  leaflet() %>%
+  addTiles() %>%
+  addPolylines()
+
+
+
+
 
 

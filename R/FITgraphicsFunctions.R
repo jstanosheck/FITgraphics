@@ -104,7 +104,18 @@ plotFit <- function(fitFile, varName){
 #'
 #' @return
 
-mapFit <- function(){
+mapFit <- function(fitFile){
+  #get the coordinates long, lat
+  coordinates <- fitFile$data %>%
+    select(position_long, position_lat)
 
+  #add the coordinates to the map file
+  map <- coordinates %>%
+    as.matrix() %>%
+    leaflet() %>%
+    addTiles() %>%
+    addPolylines()
+
+  return(map)
 }
 
