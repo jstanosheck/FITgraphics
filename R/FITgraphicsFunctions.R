@@ -13,7 +13,7 @@
 #' Each column is named and represents the different variables e.g. heart_rate.
 
 getFit <- function(fileName){
-#Compatability Checks
+#Compatibility Checks
 ###################################################
   #check that fileName is of type string
   if (is.character(fileName) == FALSE){
@@ -55,14 +55,15 @@ getFit <- function(fileName){
 #' @description
 #'
 #' @param fitFile - {Dataframe} Required parameters: data, records
-#' @param varName - {Character}
+#' @param varName - {Character} Name of requested variable to be graphed
+#' @param showAverage {Logical} Show average line and value, default = False
 #'
 #' @export
 #' @import ggplot2
 #'
 #' @return
 
-plotFit <- function(fitFile, varName){
+plotFit <- function(fitFile, varName, showAverage = FALSE){
   #compatibility checks
 ########################################
   #check if varName is a character string
@@ -86,13 +87,29 @@ plotFit <- function(fitFile, varName){
   #output average speed
   average <- mean(dataVector)
 
-  #This will plot a graphic of the varName vs time
+  #set the title as a string
+  #title <- sprintf('%s vs. Time', varName)
+
+  #Set up the initial structure of the plot w/ line xlab and title
   g <- ggplot(fitFile$data, aes(x = timestamp, y = dataVector)) +
     geom_line(size = 0.5, color="orange") +
-    geom_hline(yintercept = average, color = "blue")
+    xlab("Time of Day (HH:MM)") +
+    ggtitle(toupper(sprintf('%s vs. Time', varName)))
+
+  if (showAverage){
+    #add the line for the average value to the plot
+    g <- g + geom_hline(yintercept = average, color = "black")
+    #add annotation for the average value label
+    g <- g + geom_label(aes(x = as.POSIXct(timestamp[floor(length(timestamp) * 0.25)]),
+                            y = max(dataVector) * 0.9,
+                            label = sprintf("%.2f \n Average %s", average, varName)))
+
+  }
 
   return(g)
 }
+
+
 
 #' mapFit
 #'
@@ -102,6 +119,7 @@ plotFit <- function(fitFile, varName){
 #'
 #' @export
 #' @import leaflet
+#' @importFrom dplyr select
 #'
 #' @return
 

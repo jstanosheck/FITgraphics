@@ -6,7 +6,8 @@ Author: person(first = "Jacob", last = "Stanosheck",
         role = c("aut", "cre"),
         email = "jstanosheck@tamu.edu")
 Maintainer: The package maintainer <yourself@somewhere.net>
-Description: This package allows users to represent their data from .FIT files in graphical forms. 
+Description: This package allows users to represent their data 
+    from .FIT files in graphical forms. 
 License: GPL-3
 Encoding: UTF-8
 LazyData: true

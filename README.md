@@ -7,7 +7,10 @@ manufacture these devices have a native platform to see the data from these file
 several R packages that can extract the data from .FIT files to be used in R, but there is no
 package that I have found that is able to manipulate these data to show them in a nice form like
 the native Garmin or Apple apps.
-Intended Functionality:
+
+
+***Intended Functionality:***
+
 The intent behind this package will be to read in the .FIT files and give the user the opportunity
 to explore their data in a meaningful way, similar to what is experienced in native apps. This
-package will rely heavily on ggplots2 package and potentially other graphical packages. 
+package will rely heavily on ggplot2 package and potentially other graphical packages. 
