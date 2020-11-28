@@ -24,9 +24,8 @@ ave_speed <- mean(all_test_records$speed)
 
 
 ggplot(all_test_records, aes(x=timestamp, y=altitude)) +
-  geom_line(size = 0.5, color="orange")  +
-  geom_hline(yintercept = ave_speed, color="blue") +
-  scale_y_continuous(name = "Speed (m/s)") + xlab("Time of Day (HH:MM)")
+  geom_line(size = 1, color="orange") +
+  geom_point(aes(alpha = ifelse(altitude == max(altitude), 1, 0), label = "max"))
 
 
 #make diff_time
@@ -83,5 +82,55 @@ map <- coordinates %>%
   addPolylines()
 
 
+#Testing for the addition of min points
 
+
+
+me.2 <- me %>%
+  group_by(variable) %>%
+  mutate(color = (min(value) == value | max(value) == value))
+
+ggplot(data=me.2, aes(x = date, y = value)) +
+  geom_line() +
+  geom_point(aes(color = color)) +
+  facet_wrap(~variable, ncol=1, scales="free_y") +
+  scale_color_manual(values = c(NA, "red"))
+
+
+
+
+
+#test the gauge on a toy example
+library(plotly)
+
+fig <- plot_ly(
+  domain = list(x = c(0, 1), y = c(0, 1)),
+  value = session$total_anaerobic_training_effect,
+  title = list(text = "Speed", font = list(color = "red")),
+  type = "indicator",
+  mode = "gauge+number",
+  gauge = list(
+    bar = list(color = "orange",
+               line = list(color = "red", width = 10))
+  ))
+fig <- fig %>%
+  layout(margin = list(l=20,r=30))
+
+fig
+
+
+
+
+
+
+#start of testing individual functions
+##########################################################
+#source functions
+source("R/FITgraphicsFunctions.R")
+
+#load FIT file into variavle test_fit
+test_fit <- getFit("/Users/jacobstanosheck/Desktop/TestRun.fit")
+
+#graph the speed graph with showAverage = FALSE
+plotFit(test_fit, "speed", showAverage = T)
 

@@ -16,4 +16,5 @@ Imports:
     ggplot2,
     dplyr,
     leaflet,
-    magrittr
+    magrittr,
+    plotly

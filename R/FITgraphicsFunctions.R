@@ -87,9 +87,6 @@ plotFit <- function(fitFile, varName, showAverage = FALSE){
   #output average speed
   average <- mean(dataVector)
 
-  #set the title as a string
-  #title <- sprintf('%s vs. Time', varName)
-
   #Set up the initial structure of the plot w/ line xlab and title
   g <- ggplot(fitFile$data, aes(x = timestamp, y = dataVector)) +
     geom_line(size = 0.5, color="orange") +
@@ -100,7 +97,7 @@ plotFit <- function(fitFile, varName, showAverage = FALSE){
     #add the line for the average value to the plot
     g <- g + geom_hline(yintercept = average, color = "black")
     #add annotation for the average value label
-    g <- g + geom_label(aes(x = as.POSIXct(timestamp[floor(length(timestamp) * 0.25)]),
+    g <- g + geom_label(aes(x = timestamp[floor(length(timestamp) * 0.25)],
                             y = max(dataVector) * 0.9,
                             label = sprintf("%.2f \n Average %s", average, varName)))
 
@@ -138,3 +135,34 @@ mapFit <- function(fitFile){
   return(map)
 }
 
+
+#' showTrainingEffect
+#'
+#' @description
+#'
+#' @param fitFile - Must be the output from the getFit() function in this
+#'    package.
+#'
+#' @return
+#' @export
+#' @import plotly
+#'
+#' @examples
+showTrainingEffect <- function(fitFile){
+
+  #Plots the total Anaerobic Training Effect
+  fig <- plot_ly(
+    domain = list(x = c(0, 1), y = c(0, 1)),
+    value = fitFile$session$total_anaerobic_training_effect,
+    title = list(text = "Speed", font = list(color = "red")),
+    type = "indicator",
+    mode = "gauge+number",
+    gauge = list(
+      bar = list(color = "orange",
+                 line = list(color = "red", width = 10))
+    ))
+  fig <- fig %>%
+    layout(margin = list(l=20,r=30))
+
+  return(fig)
+}
