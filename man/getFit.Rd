@@ -10,7 +10,7 @@ getFit(fileName)
 \item{fileName}{- String of file path corresponding to the FIT file. File must be .fit extension.}
 }
 \value{
-Returns a data.frame ordered based on the timestamp of each instance.
+Returns a \code{data.frame} ordered based on the timestamp of each instance.
 Each column is named and represents the different variables e.g. heart_rate.
 }
 \description{
