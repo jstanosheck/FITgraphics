@@ -4,12 +4,14 @@
 \alias{plotFit}
 \title{plotFit}
 \usage{
-plotFit(fitFile, varName)
+plotFit(fitFile, varName, showAverage = FALSE)
 }
 \arguments{
 \item{fitFile}{- {Dataframe} Required parameters: data, records}
 
-\item{varName}{- {Character}}
+\item{varName}{- {Character} Name of requested variable to be graphed}
+
+\item{showAverage}{{Logical} Show average line and value, default = False}
 }
 \value{
 

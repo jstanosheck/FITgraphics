@@ -142,15 +142,18 @@ mapFit <- function(fitFile){
 #'
 #' @param fitFile - Must be the output from the getFit() function in this
 #'    package.
+#' @param AnaerobicTE - (Logical) Default = FALSE. If true, the function will
+#'    return the Anaerobic Training Effect rather than the Aerobic Training
+#'    Effect.
 #'
 #' @return
 #' @export
 #' @import plotly
 #'
 #' @examples
-showTrainingEffect <- function(fitFile){
+showTrainingEffect <- function(fitFile, AnaerobicTE = FALSE){
 
-  #Plots the total Anaerobic Training Effect
+  #plots the requested training effect Default is Aerobic TE
   fig <- plot_ly(
     domain = list(x = c(0, 1), y = c(0, 1)),
     value = fitFile$session$total_anaerobic_training_effect,
@@ -163,6 +166,7 @@ showTrainingEffect <- function(fitFile){
     ))
   fig <- fig %>%
     layout(margin = list(l=20,r=30))
+
 
   return(fig)
 }
