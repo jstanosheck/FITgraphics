@@ -9,7 +9,7 @@
 #'
 #' @export
 #'
-#' @return Returns a data.frame ordered based on the timestamp of each instance.
+#' @return Returns a \code{data.frame} ordered based on the timestamp of each instance.
 #' Each column is named and represents the different variables e.g. heart_rate.
 
 getFit <- function(fileName){
@@ -146,26 +146,76 @@ mapFit <- function(fitFile){
 #'    return the Anaerobic Training Effect rather than the Aerobic Training
 #'    Effect.
 #'
-#' @return
+#' @return A plot in the viewer window showing a gauge of range between 0 and 5.
+#'    The gauge displays the training effect in as a number and in the gauge.
 #' @export
-#' @import plotly
 #'
 #' @examples
+#' #load the necessary file using the getFIT function
+#' NULL
 showTrainingEffect <- function(fitFile, AnaerobicTE = FALSE){
 
+  #check if the AnaerobicTE is True and assign the title and value for the function
+  if (AnaerobicTE){
+    title = "Anaerobic Training Effect"
+    value = fitFile$session$total_anaerobic_training_effect
+  } else {
+    title = "Aerobic Training Effect"
+    value = fitFile$session$total_training_effect
+  }
+
+  #check the value of the training effect to determine the color of the line
+  if (value <= 1){
+    colorvalue = "#ffffbf"
+  }else if (value <= 2){
+    colorvalue = "#2b83ba"
+  }else if (value <= 3){
+    colorvalue = "#abdda4"
+  }else if (value <= 4){
+    colorvalue = "#fdae61"
+  }else {
+    colorvalue = "#d7191c"
+  }
+
+
   #plots the requested training effect Default is Aerobic TE
-  fig <- plot_ly(
+  fig <- plotly::plot_ly(
     domain = list(x = c(0, 1), y = c(0, 1)),
-    value = fitFile$session$total_anaerobic_training_effect,
-    title = list(text = "Speed", font = list(color = "red")),
+    value = value,
+    title = list(text = title,
+                 font = list(
+                   color = "#414a4c",
+                   size = 24,
+                   family = "arial")),
     type = "indicator",
+    number = list(
+      font = list(
+        color = "#414a4c"
+      )),
     mode = "gauge+number",
     gauge = list(
-      bar = list(color = "orange",
-                 line = list(color = "red", width = 10))
+      bar = list(color = colorvalue,
+                 line = list(
+                   width = 1
+                 )),
+      axis = list(range = list(NULL, 5),
+                  tickfont = list(
+                    family = "arial",
+                    size = 17,
+                    color = "#414a4c"
+                  )),
+      steps = list(
+        list(range = c(0, 1), color = "#fffff0"),
+        list(range = c(1, 2), color = "#c9e3f2"),
+        list(range = c(2, 3), color = "#d2edcf"),
+        list(range = c(3, 4), color = "#fedebd"),
+        list(range = c(4, 5), color = "#f8c4c5")
+      )
     ))
   fig <- fig %>%
-    layout(margin = list(l=20,r=30))
+    plotly::layout(
+      margin = list(l=20,r=30),
+      paper_bgcolor = "#cccccc")
 
 
   return(fig)
