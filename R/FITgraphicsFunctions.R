@@ -5,7 +5,7 @@
 #' if it exist, collects data and outputs a \code{data.frame} containing all data in
 #' the file.
 #'
-#' @param fileName - String of file path corresponding to the FIT file. File must be .fit extension.
+#' @param fileName - {Character} (Required) File path corresponding to the FIT file. File must be .fit extension.
 #'
 #' @export
 #'
@@ -130,7 +130,7 @@ plotFit <- function(fitFile, varName, showAverage = FALSE, showMax = FALSE){
 #'
 #' @description
 #'
-#' @param fitFile - {Dataframe} Required parameters: data, records
+#' @param fitFile - {Dataframe} (Required) Must be the output of \code{gitFit()}
 #'
 #' @export
 #' @import leaflet
@@ -157,9 +157,8 @@ mapFit <- function(fitFile){
 #' showTrainingEffect
 #'
 #'
-#' @param fitFile - Must be the output from the \code{getFit()} function in this
-#'    package.
-#' @param AnaerobicTE - (Logical) \code{Default = FALSE}. If true, the function will
+#' @param fitFile - {Dataframe} (Required) Must be the output of \code{gitFit()}
+#' @param AnaerobicTE - {Logical} (Optional) \code{Default = FALSE}. If true, the function will
 #'    return the Anaerobic Training Effect rather than the Aerobic Training
 #'    Effect.
 #'

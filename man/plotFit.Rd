@@ -4,14 +4,16 @@
 \alias{plotFit}
 \title{plotFit}
 \usage{
-plotFit(fitFile, varName, showAverage = FALSE)
+plotFit(fitFile, varName, showAverage = FALSE, showMax = FALSE)
 }
 \arguments{
 \item{fitFile}{- {Dataframe} (Required) Must be the output of \code{gitFit()}}
 
 \item{varName}{- {Character} (Required) Name of requested variable to be graphed}
 
-\item{showAverage}{{Logical} (Optional)Show average line and value, \code{default = False}}
+\item{showAverage}{- {Logical} (Optional) Show average line and value, \code{default = FALSE}}
+
+\item{showMax}{- {Logical} (Optional) Show the maximum value in plot, \code{default = FALSE}}
 }
 \value{
 Returns a plot of the \code{varName} vs time. This The average and

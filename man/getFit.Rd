@@ -7,7 +7,7 @@
 getFit(fileName)
 }
 \arguments{
-\item{fileName}{- String of file path corresponding to the FIT file. File must be .fit extension.}
+\item{fileName}{- {Character} (Required) File path corresponding to the FIT file. File must be .fit extension.}
 }
 \value{
 Returns a \code{data.frame} ordered based on the timestamp of each instance.

@@ -7,7 +7,7 @@
 mapFit(fitFile)
 }
 \arguments{
-\item{fitFile}{- {Dataframe} Required parameters: data, records}
+\item{fitFile}{- {Dataframe} (Required) Must be the output of \code{gitFit()}}
 }
 \value{
 A map showing the GPS route that was taken during the activity.

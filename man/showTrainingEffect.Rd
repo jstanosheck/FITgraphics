@@ -7,10 +7,9 @@
 showTrainingEffect(fitFile, AnaerobicTE = FALSE)
 }
 \arguments{
-\item{fitFile}{- Must be the output from the \code{getFit()} function in this
-package.}
+\item{fitFile}{- {Dataframe} (Required) Must be the output of \code{gitFit()}}
 
-\item{AnaerobicTE}{- (Logical) \code{Default = FALSE}. If true, the function will
+\item{AnaerobicTE}{- {Logical} (Optional) \code{Default = FALSE}. If true, the function will
 return the Anaerobic Training Effect rather than the Aerobic Training
 Effect.}
 }
