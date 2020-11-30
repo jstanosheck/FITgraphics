@@ -9,7 +9,7 @@ This package requires the [FITfileR](https://github.com/grimbough/FITfileR) pack
 
 In the Rstudio Console this is the method for downlading the FITfileR package:
 
-'''R
+```R
 
 #Install Devtools package if not yet installed on machine
 install.packages("devtools")
@@ -20,7 +20,7 @@ devtools::install_github("grimbough/FITfileR")
 #Load Library in your console
 library(FITfileR)
 
-'''
+```
 
 When using a wearable activity device (Garmin or Apple Watch) or a cycling computer, the files
 that are generated from activities are .FIT files. These files contain data that is recorded during
