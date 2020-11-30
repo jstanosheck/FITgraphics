@@ -99,27 +99,84 @@ plotFit <- function(fitFile, varName, showAverage = FALSE, showMax = FALSE){
 ###########################################################
 #plotting of data
 ###########################################################
-  #makes a vector out of the data from specified data field
-  dataVector <- as.vector(unlist(fitFile$data[varName]))
+  #Set the color of the graph and the Y label axis name.
+  if (tolower(varName) == "speed"){
+    #set graph color
+    graphColor <- "#52bfeb"
+    #set Y axis name
+    yaxis <- "Speed (m/s)"
+  }else if (tolower(varName) == "altitude"){
+    #set graph color
+    graphColor <- "#f09c00"
+    #set Y axis name
+    yaxis <- "Altitude (m)"
+  } else if (tolower(varName) == "power"){
+    #set graph color
+    graphColor <- "#631f9e"
+    #set Y axis name
+    yaxis <- "Power (W)"
+  }  else if (tolower(varName) == "heart_rate") {
+    #set graph color
+    graphColor <- "#ff1414"
+    #set Y axis name
+    yaxis <- "Heart Rate (bpm)"
+  } else if (tolower(varName) == "temperature"){
+    #set graph color
+    graphColor <- "darkgrey"
+    #set Y axis name
+    yaxis <- "Temperature (*C)"
+  } else if (tolower(varName) == "cadence"){
+    #set graph color
+    graphColor <- "#17c417"
+    #set Y axis name
+    yaxis <- "Cadence (SPM/RPM)"
+  } else{
+    #set standard graph color
+    graphColor <- "#454545"
+    #set standard Y axis name
+    yaxis <- toupper(sprintf('%s (Unknown Units)', varName))
+  }
 
-  #output average speed
-  average <- mean(dataVector)
+
+  #makes a vector out of the data from specified data field
+  #if the cadence is the varName then determine the cadence by multiplying by 2
+  if (tolower(varName) == "cadence"){
+    #this accounts for the cadence only being counted in halves.
+    #Therefore shows the true spm or rpm
+    dataVector <- as.vector(unlist(fitFile$data[varName])) * 2
+  } else{
+    dataVector <- as.vector(unlist(fitFile$data[varName]))
+  }
+
+
 
   #Set up the initial structure of the plot w/ line xlab and title
   g <- ggplot(fitFile$data, aes(x = timestamp, y = dataVector)) +
-    geom_line(size = 0.5, color="orange") +
+    geom_line(size = 0.5, color = graphColor) +
     xlab("Time of Day (HH:MM)") +
+    ylab(yaxis) +
     ggtitle(toupper(sprintf('%s vs. Time', varName)))
 
   if (showAverage){
+    #output average of dataVector
+    average <- mean(dataVector)
     #add the line for the average value to the plot
     g <- g + geom_hline(yintercept = average, color = "black")
     #add annotation for the average value label
     g <- g + geom_label(aes(x = timestamp[floor(length(timestamp) * 0.25)],
                             y = max(dataVector) * 0.9,
                             label = sprintf("%.2f \n Average %s", average, varName)))
-
   }
+  if (showMax){
+    #find the max value of dataVector
+    max_output <- max(dataVector)
+    #add annotation for the max value label
+    g <- g + geom_label(aes(x = timestamp[floor(length(timestamp) * 0.75)],
+                            y = max(dataVector) * 0.9,
+                            label = sprintf("%.2f \n Max %s",
+                                            max_output, varName)))
+  }
+
 
   return(g)
 }
