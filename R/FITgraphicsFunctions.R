@@ -168,6 +168,15 @@ mapFit <- function(fitFile){
 #' #plot anaerobic training effect
 #' anaerobic <- showTrainingEffect(fitFile, AnaerobicTE = T)
 showTrainingEffect <- function(fitFile, AnaerobicTE = FALSE){
+  #check that fitFile Aerobic and Anaerobic Training Effect exist
+  if (!exists("total_anaerobic_training_effect", fitFile$session) ||
+      !exists("total_training_effect", fitFile$session)){
+    stop("Training Effect does not exist in this file")
+  }
+  #check that AnaerobicTE is bool
+  if (!is.logical(AnaerobicTE)){
+    stop("AnaerobicTE must be logical")
+  }
 
   #check if the AnaerobicTE is True and assign the title and value for the function
   if (AnaerobicTE){
