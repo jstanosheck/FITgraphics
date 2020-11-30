@@ -7,10 +7,10 @@
 showTrainingEffect(fitFile, AnaerobicTE = FALSE)
 }
 \arguments{
-\item{fitFile}{- Must be the output from the getFit() function in this
+\item{fitFile}{- Must be the output from the \code{getFit()} function in this
 package.}
 
-\item{AnaerobicTE}{- (Logical) Default = FALSE. If true, the function will
+\item{AnaerobicTE}{- (Logical) \code{Default = FALSE}. If true, the function will
 return the Anaerobic Training Effect rather than the Aerobic Training
 Effect.}
 }
@@ -19,9 +19,16 @@ A plot in the viewer window showing a gauge of range between 0 and 5.
    The gauge displays the training effect in as a number and in the gauge.
 }
 \description{
-
+showTrainingEffect
 }
 \examples{
 #load the necessary file using the getFIT function
-NULL
+fitFile <- getFit("Data/TestRun.fit")
+
+#plot aerobic training effect
+aerobic <- showTrainingEffect(fitFile, AnaerobicTE = F)
+aerobic
+
+#plot anaerobic training effect
+anaerobic <- showTrainingEffect(fitFile, AnaerobicTE = T)
 }

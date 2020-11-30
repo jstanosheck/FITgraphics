@@ -7,14 +7,16 @@
 plotFit(fitFile, varName, showAverage = FALSE)
 }
 \arguments{
-\item{fitFile}{- {Dataframe} Required parameters: data, records}
+\item{fitFile}{- {Dataframe} (Required) Must be the output of \code{gitFit()}}
 
-\item{varName}{- {Character} Name of requested variable to be graphed}
+\item{varName}{- {Character} (Required) Name of requested variable to be graphed}
 
-\item{showAverage}{{Logical} Show average line and value, default = False}
+\item{showAverage}{{Logical} (Optional)Show average line and value, \code{default = False}}
 }
 \value{
-
+Returns a plot of the \code{varName} vs time. This The average and
+maximum values will be shown based on the input parameters. Each graph will
+have a different graph color based on what \code{varName} is chosen.
 }
 \description{
 

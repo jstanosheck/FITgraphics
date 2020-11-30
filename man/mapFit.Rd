@@ -10,7 +10,7 @@ mapFit(fitFile)
 \item{fitFile}{- {Dataframe} Required parameters: data, records}
 }
 \value{
-
+A map showing the GPS route that was taken during the activity.
 }
 \description{
 

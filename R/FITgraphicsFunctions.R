@@ -2,7 +2,7 @@
 #' Import FIT File
 #'
 #' @description Checks for the existence of a file in the given location and
-#' if it exist, collects data and outputs a Data Frame containing all data in
+#' if it exist, collects data and outputs a \code{data.frame} containing all data in
 #' the file.
 #'
 #' @param fileName - String of file path corresponding to the FIT file. File must be .fit extension.
@@ -11,6 +11,12 @@
 #'
 #' @return Returns a \code{data.frame} ordered based on the timestamp of each instance.
 #' Each column is named and represents the different variables e.g. heart_rate.
+#'
+#' @examples
+#'
+#' loaded_File <- getFit("Data/TestRun.fit")
+#'
+#' loaded_File
 
 getFit <- function(fileName){
 #Compatibility Checks
@@ -32,19 +38,19 @@ getFit <- function(fileName){
   #Start of function file loading
 ##################################################
   #load the file using the readFitFile function
-  out_file <- readFitFile(fileName = fileName)
+  out_file <- FITfileR::readFitFile(fileName = fileName)
 
   #use the dplyr library to bind the records together by the timestamp
-  out_records <- records(out_file) %>%
-    bind_rows() %>%
-    arrange(timestamp)
+  out_records <- FITfileR::records(out_file) %>%
+    dplyr::bind_rows() %>%
+    dplyr::arrange(timestamp)
 
   #extract the individual record names
   #these are the available datafields for user interaction
   records <- names(out_records)
 
   #extract session data from out_file
-  session <- getMessagesByType(out_file, "session")
+  session <- FITfileR::getMessagesByType(out_file, "session")
 
   return(list(data = out_records, records = records, session = session))
 }
@@ -54,14 +60,16 @@ getFit <- function(fileName){
 #'
 #' @description
 #'
-#' @param fitFile - {Dataframe} Required parameters: data, records
-#' @param varName - {Character} Name of requested variable to be graphed
-#' @param showAverage {Logical} Show average line and value, default = False
+#' @param fitFile - {Dataframe} (Required) Must be the output of \code{gitFit()}
+#' @param varName - {Character} (Required) Name of requested variable to be graphed
+#' @param showAverage {Logical} (Optional)Show average line and value, \code{default = False}
 #'
 #' @export
 #' @import ggplot2
 #'
-#' @return
+#' @return Returns a plot of the \code{varName} vs time. This The average and
+#' maximum values will be shown based on the input parameters. Each graph will
+#' have a different graph color based on what \code{varName} is chosen.
 
 plotFit <- function(fitFile, varName, showAverage = FALSE){
   #compatibility checks
@@ -118,7 +126,7 @@ plotFit <- function(fitFile, varName, showAverage = FALSE){
 #' @import leaflet
 #' @importFrom dplyr select
 #'
-#' @return
+#' @return A map showing the GPS route that was taken during the activity.
 
 mapFit <- function(fitFile){
   #get the coordinates long, lat
@@ -138,11 +146,10 @@ mapFit <- function(fitFile){
 
 #' showTrainingEffect
 #'
-#' @description
 #'
-#' @param fitFile - Must be the output from the getFit() function in this
+#' @param fitFile - Must be the output from the \code{getFit()} function in this
 #'    package.
-#' @param AnaerobicTE - (Logical) Default = FALSE. If true, the function will
+#' @param AnaerobicTE - (Logical) \code{Default = FALSE}. If true, the function will
 #'    return the Anaerobic Training Effect rather than the Aerobic Training
 #'    Effect.
 #'
@@ -152,7 +159,14 @@ mapFit <- function(fitFile){
 #'
 #' @examples
 #' #load the necessary file using the getFIT function
-#' NULL
+#' fitFile <- getFit("Data/TestRun.fit")
+#'
+#' #plot aerobic training effect
+#' aerobic <- showTrainingEffect(fitFile, AnaerobicTE = F)
+#' aerobic
+#'
+#' #plot anaerobic training effect
+#' anaerobic <- showTrainingEffect(fitFile, AnaerobicTE = T)
 showTrainingEffect <- function(fitFile, AnaerobicTE = FALSE){
 
   #check if the AnaerobicTE is True and assign the title and value for the function

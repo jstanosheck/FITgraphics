@@ -15,6 +15,12 @@ Each column is named and represents the different variables e.g. heart_rate.
 }
 \description{
 Checks for the existence of a file in the given location and
-if it exist, collects data and outputs a Data Frame containing all data in
+if it exist, collects data and outputs a \code{data.frame} containing all data in
 the file.
+}
+\examples{
+
+loaded_File <- getFit("Data/TestRun.fit")
+
+loaded_File
 }

@@ -5,6 +5,7 @@ Version: 0.1.0
 Author: person(first = "Jacob", last = "Stanosheck",
         role = c("aut", "cre"),
         email = "jstanosheck@tamu.edu")
+Maintainer: Jacob Stanosheck <jstanosheck@tamu.edu>
 Description: This package allows users to represent their data 
     from .FIT files in graphical forms. 
 License: GPL-3
@@ -16,4 +17,5 @@ Imports:
     dplyr,
     leaflet,
     magrittr,
-    plotly
+    plotly,
+    utils
