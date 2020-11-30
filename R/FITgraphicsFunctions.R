@@ -62,7 +62,8 @@ getFit <- function(fileName){
 #'
 #' @param fitFile - {Dataframe} (Required) Must be the output of \code{gitFit()}
 #' @param varName - {Character} (Required) Name of requested variable to be graphed
-#' @param showAverage {Logical} (Optional)Show average line and value, \code{default = False}
+#' @param showAverage - {Logical} (Optional) Show average line and value, \code{default = FALSE}
+#' @param showMax - {Logical} (Optional) Show the maximum value in plot, \code{default = FALSE}
 #'
 #' @export
 #' @import ggplot2
@@ -71,7 +72,7 @@ getFit <- function(fileName){
 #' maximum values will be shown based on the input parameters. Each graph will
 #' have a different graph color based on what \code{varName} is chosen.
 
-plotFit <- function(fitFile, varName, showAverage = FALSE){
+plotFit <- function(fitFile, varName, showAverage = FALSE, showMax = FALSE){
   #compatibility checks
 ########################################
   #check if varName is a character string
@@ -86,7 +87,16 @@ plotFit <- function(fitFile, varName, showAverage = FALSE){
   if ((varName %in% fitFile$records) == FALSE){
     stop("The varName provided is not a variable in fitFile.")
   }
+  #check that showAverage is bool
+  if (!is.logical(showAverage)){
+    stop("showAverage must be logical")
+  }
+  #check that showMax is bool
+  if (!is.logical(showMax)){
+    stop("showMax must be logical")
+  }
 
+###########################################################
 #plotting of data
 ###########################################################
   #makes a vector out of the data from specified data field
