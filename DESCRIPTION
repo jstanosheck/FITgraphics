@@ -19,3 +19,7 @@ Imports:
     magrittr,
     plotly,
     utils
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

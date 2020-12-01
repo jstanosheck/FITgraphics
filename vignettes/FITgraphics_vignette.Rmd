@@ -1,0 +1,24 @@
+---
+title: "FITgraphics Vignette"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{FITgraphics Vignette}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Setting up the environment
+
+The first thing to do is to load the package to the working environment in Rstudio.
+
+
+```{r setup}
+library(FITgraphics)
+```
