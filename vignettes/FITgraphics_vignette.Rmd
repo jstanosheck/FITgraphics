@@ -14,11 +14,65 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Setting up the environment
+# Introduction
 
-The first thing to do is to load the package to the working environment in Rstudio.
+**FITgraphics** is a package designed to take a file created by a fitness tracker or cycling computer,
+and allow the user to create aesthetically pleasing graphical representations of their
+activity data. 
 
+## Installing package and external dependancies
+
+**FITgraphics** is currently available for download from [GitHub](https://github.com/jstanosheck/FITgraphics), it can be downloaded using
+the **devtools** package. 
+
+This package is also dependent on an external package not available on CRAN 
+**FITfileR**, so it must also be downloaded using the **devtools** package. 
+
+If the **devtools** package is not yet installed on your machine, this will 
+automatically install it.
+
+```{r, message=FALSE, cache=TRUE}
+if(!requireNamespace("devtools")) {
+    install.packages("devtools")
+}
+
+devtools::install_github("grimbough/FITfileR")
+
+devtools::install_github("jstanosheck/FITgraphics")
+```
+
+After having installed the needed packages, you should load the libraries to the 
+R session to be used.
 
 ```{r setup}
 library(FITgraphics)
 ```
+
+## Example .FIT files 
+
+There are two example data files that come with the **FITgraphics** package, on 
+called TestRun.fit and the other called TestRide.fit. These two files can be 
+found in the \code{Data/} directory.
+
+## Loading the two test data files
+
+When loading the files in, you can use the \code{getFit()} function. It is 
+important to note that the files that are loaded into this function must have 
+the .fit extension. 
+
+```{r, cache=TRUE,  message=FALSE}
+file_location_run <- system.file("Data", "TestRun.fit", 
+                             package = "FITgraphics")
+
+runFile <- getFit(file_location_run)
+
+file_location_ride <- system.file("Data", "TestRide.fit",
+                                  package = "FITgraphics")
+
+rideFile <- getFit(file_location_ride)
+```
+
+
+
+
+
