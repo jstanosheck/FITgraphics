@@ -198,14 +198,23 @@ plotFit <- function(fitFile, varName, showAverage = FALSE, showMax = FALSE){
 mapFit <- function(fitFile){
   #get the coordinates long, lat
   coordinates <- fitFile$data %>%
-    select(position_long, position_lat)
+    select(position_long, position_lat) %>%
+    as.matrix()
 
   #add the coordinates to the map file
   map <- coordinates %>%
-    as.matrix() %>%
-    leaflet() %>%
-    addTiles() %>%
-    addPolylines()
+    leaflet::leaflet() %>%
+    leaflet::addTiles() %>%
+    leaflet::addPolylines(color = "#0E4AC2") %>%
+    #add point to the starting postion that is green and ending position is red
+    leaflet::addCircleMarkers(lng = c(utils::head(coordinates, n=1)[1, 1],
+                                      utils::tail(coordinates, n=1)[1, 1]),
+                              lat = c(utils::head(coordinates, n=1)[1, 2],
+                                      utils::tail(coordinates, n=1)[1, 2]),
+                              color = c("#04db62", "#f1070b"),
+                              opacity = .75,
+                              fillOpacity = .75,
+                              radius = 3)
 
   return(map)
 }

@@ -5,10 +5,10 @@ library(dplyr)
 library(ggplot2)
 
 #check if the file exists
-file.exists("/Users/jacobstanosheck/Desktop/TestRun.fit")
+file.exists("Data/TestRun.fit")
 
 #check if file extension if of .fit
-grepl("\\.fit$", "/Users/jacobstanosheck/Desktop/TestRun.fit")
+grepl("\\.fit$", "Data/TestRun.fit")
 
 #load the file using the readFitFile function
 test_file <- readFitFile("/Users/jacobstanosheck/Desktop/TestRun.fit")
@@ -129,8 +129,8 @@ fig
 source("R/FITgraphicsFunctions.R")
 
 #load FIT file into variavle test_fit
-test_fit <- getFit("/Users/jacobstanosheck/Desktop/TestRun.fit")
+test_fit <- getFit("Data/TestRun.fit")
 
 #graph the speed graph with showAverage = FALSE
-plotFit(test_fit, "speed", showAverage = T)
+plotFit(test_fit, "distance")
 
