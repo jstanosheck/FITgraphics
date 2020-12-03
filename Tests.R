@@ -138,3 +138,9 @@ plotFit(test_fit, "distance")
 ride_test <- getFit("Data/TestRide.fit")
 
 plotFit(ride_test, "power", showMax = T)
+
+
+#test mapFit
+mapFit(ride_test)
+
+mapFit(test_fit)

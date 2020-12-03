@@ -114,8 +114,8 @@ for the activity. A simple example of this is to plot the speed vs time.
 
 `plotFit()` requires two arguments:
 
-* fitFile - file that is the output form `getFit()`
-* varName - string of one of the `"records"`
+* `fitFile` - file that is the output form `getFit()`
+* `varName` - string of one of the `"records"`
 
 ```{r, cache=TRUE, fig.align='center', fig.height=4, fig.width=6}
 plotFit(runFile, "speed")
@@ -151,3 +151,54 @@ plotFit(rideFile, "power", showAverage = T, showMax = T)
 
 These arguments may cover some of the graph, so it is advisable to graph the 
 plot both with and without these arguments if this is an issue.
+
+## Plot the map for each plot
+
+The `mapFit()` function creates a map showing the path of the activity overlayed 
+on an open source street map. The starting point of the activity is marked by a 
+green marker and the ending point is marked by a red marker. 
+
+```{r, fig.align='center', fig.height=5, fig.width=7}
+mapFit(runFile)
+```
+
+
+## Plot the training effect 
+
+The training effect is a value between 0 and 5. Generally, a higher value for 
+training effect represents a greater increase in fitness. This metric is developed 
+by **Firstbeat** Technologies Ltd. 
+
+The ranges for training effect and how it effects your fitness:
+
+* 0.0 - 0.9: No Benefit 
+* 1.0 - 1.9: Minor Benefit
+* 2.0 - 2.9: Maintaining
+* 3.0 - 3.9: Improving
+* 4.0 - 4.9: Highly Improving
+* 5.0: Overreaching
+
+There are two types of training effect that can be represented: aerobic and 
+anaerobic. Aerobic training effect is generally representative of your ability 
+to exercise at a moderate to moderately high intensity for extended periods of time.
+Anaerobic capacity is generally representative of your ability to perform high 
+intensity activities for a short period of time. 
+
+To plot the training effect we can use `showTrainingEffect()` which takes one 
+required argument and one optional argument.
+
+* `fitFile` - (Required) file that is the output form `getFit()`
+* `AnaerobicTE` - (Optional) Shows the Anaerobic training effect rather than 
+the aerobic training effect
+
+
+```{r}
+#This shows the aerobic training effect for runFile
+showTrainingEffect(runFile)
+```
+
+
+```{r, fig.align='center'}
+#This shows the anaerobic training effect for runFile
+showTrainingEffect(runFile, AnaerobicTE = TRUE)
+```
