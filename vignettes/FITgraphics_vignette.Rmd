@@ -48,31 +48,88 @@ R session to be used.
 library(FITgraphics)
 ```
 
-## Example .FIT files 
+# Examples using provided .FIT files 
 
 There are two example data files that come with the **FITgraphics** package, on 
 called TestRun.fit and the other called TestRide.fit. These two files can be 
-found in the \code{Data/} directory.
+found in the `Data/` directory.
 
 ## Loading the two test data files
 
-When loading the files in, you can use the \code{getFit()} function. It is 
+When loading the files in, you can use the `getFit()` function. It is 
 important to note that the files that are loaded into this function must have 
 the .fit extension. 
 
-```{r, cache=TRUE,  message=FALSE}
+Here we will use both the TestRun.fit and TestRide.fit files to get their location.
+
+```{r, cache=FALSE}
 file_location_run <- system.file("Data", "TestRun.fit", 
                              package = "FITgraphics")
 
-runFile <- getFit(file_location_run)
-
 file_location_ride <- system.file("Data", "TestRide.fit",
                                   package = "FITgraphics")
+```
+
+Using the `getFit()` function, you can save each of the two files in 
+different variables. Here I will use `runFile` and `rideFile` as 
+examples.
+
+```{r, cache=TRUE, message=FALSE}
+runFile <- getFit(file_location_run)
 
 rideFile <- getFit(file_location_ride)
 ```
 
+Each of the two generated variables `runFile` and `rideFile` are a list of three 
+items. I will use only `runFile` as an example.
+
+```{r}
+names(runFile)
+```
+
+Each of these three items are used in the package and can be accessed by the user.
 
 
+* `"Data"`: a `data.frame` containing all of the data stored in the file 
+that is used to form the graphics.
+* `"records"`: a `vector` of each of the headings in the `data.frame`.
+* `"session"`: a `list` of different metadata about the activity, e.g. total 
+elapsed time of the activity or the maximum elevation.
 
 
+Individual items of each item can be accessed.
+
+```{r}
+runFile$session$total_elapsed_time
+
+runFile$session$total_calories
+
+runFile$records
+```
+
+## Plotting the files
+
+The `plotFit()` function is used to graph any of the `"records"` against time 
+for the activity. A simple example of this is to plot the speed vs time.
+
+`plotFit()` requires two arguments:
+
+* fitFile - file that is the output form `getFit()`
+* varName - string of one of the `"records"`
+
+```{r, cache=TRUE, fig.align='center', fig.height=4, fig.width=6}
+plotFit(runFile, "speed")
+```
+
+The plot axis, title, units, and graph color will all change based on the 
+`varName` argument. The currently supported values of `varName` are:
+
+* `"speed"`
+* `"altitude"`
+* `"power"`
+* `"heart_rate"`
+* `"temperature"`
+* `"cadence "`
+
+Any other inputs for `varName` that are in the `"records"` will all be plotted 
+with the same plot color and an "Unknown" units.
