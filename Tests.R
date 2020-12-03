@@ -129,18 +129,18 @@ fig
 source("R/FITgraphicsFunctions.R")
 
 #load FIT file into variavle test_fit
-test_fit <- getFit("Data/TestRun.fit")
+test_fit <- FITgraphics::getFit("Data/TestRun.fit")
 
 #graph the speed graph with showAverage = FALSE
-plotFit(test_fit, "distance")
+FITgraphics::plotFit(test_fit, "speed")
 
 #test the ride file
-ride_test <- getFit("Data/TestRide.fit")
+ride_test <- FITgraphics::getFit("Data/TestRide.fit")
 
-plotFit(ride_test, "power", showMax = T)
+FITgraphics::plotFit(ride_test, "speed")
 
 
 #test mapFit
-mapFit(ride_test)
+FITgraphics::mapFit(ride_test)
 
-mapFit(test_fit)
+FITgraphics::mapFit(test_fit)
