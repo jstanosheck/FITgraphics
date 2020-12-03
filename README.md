@@ -19,9 +19,7 @@ functionality of the package.
 
 
 ---
-
-<br />
-<br />
+## What the package does
 
 The intent behind this package will be to read in the .FIT files and give the user the opportunity
 to explore their data in a meaningful way, similar to what is experienced in native apps. This
