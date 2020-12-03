@@ -21,5 +21,5 @@ maximum values will be shown based on the input parameters. Each graph will
 have a different graph color based on what \code{varName} is chosen.
 }
 \description{
-
+Creates a line plot of a varName vs time.
 }

@@ -20,7 +20,9 @@ the file.
 }
 \examples{
 
-loaded_File <- getFit("Data/TestRun.fit")
+file_path <- system.file("extdata", "TestRun.fit", package = "FITgraphics")
+
+loaded_File <- getFit(file_path)
 
 loaded_File
 }

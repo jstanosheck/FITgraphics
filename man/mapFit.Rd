@@ -13,5 +13,5 @@ mapFit(fitFile)
 A map showing the GPS route that was taken during the activity.
 }
 \description{
-
+Plots the map and the path of the activity.
 }

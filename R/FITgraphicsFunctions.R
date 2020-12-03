@@ -14,7 +14,9 @@
 #'
 #' @examples
 #'
-#' loaded_File <- getFit("Data/TestRun.fit")
+#'file_path <- system.file("extdata", "TestRun.fit", package = "FITgraphics")
+#'
+#' loaded_File <- getFit(file_path)
 #'
 #' loaded_File
 
@@ -58,7 +60,7 @@ getFit <- function(fileName){
 
 #' plotFit
 #'
-#' @description
+#' @description Creates a line plot of a varName vs time.
 #'
 #' @param fitFile - {Dataframe} (Required) Must be the output of \code{gitFit()}
 #' @param varName - {Character} (Required) Name of requested variable to be graphed
@@ -185,7 +187,7 @@ plotFit <- function(fitFile, varName, showAverage = FALSE, showMax = FALSE){
 
 #' mapFit
 #'
-#' @description
+#' @description Plots the map and the path of the activity.
 #'
 #' @param fitFile - {Dataframe} (Required) Must be the output of \code{gitFit()}
 #'
