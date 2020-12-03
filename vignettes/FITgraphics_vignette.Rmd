@@ -134,9 +134,20 @@ The plot axis, title, units, and graph color will all change based on the
 Any other inputs for `varName` that are in the `"records"` will all be plotted 
 with the same plot color and an "Unknown" units.
 
-As an example of a different plotting parameters, we can use the rideFile to 
+As an example of a different plotting parameters, we can use the `rideFile` to 
 plot the power. 
 
+`plotFit()` also can take two optional arguments: 
+
+* `showAverage`
+* `showMax`
+
+These arguments are logical arguments with a default of `FALSE`. 
+
+
 ```{r, cache=TRUE, fig.align='center', fig.height=4, fig.width=6}
-plotFit(rideFile, "power")
+plotFit(rideFile, "power", showAverage = T, showMax = T)
 ```
+
+These arguments may cover some of the graph, so it is advisable to graph the 
+plot both with and without these arguments if this is an issue.
