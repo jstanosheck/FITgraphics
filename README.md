@@ -1,5 +1,27 @@
 # FITgraphics
 
+---
+## Notes on checking package
+
+When checking this package in Rstudio, the checker will return 1 Warning and 1 
+Notes.
+
+The Warning is caused by the externally dependent package `FITfileR` not being 
+available on CRAN. Since this is the case, the package is not added to import 
+in the DESCRIPTION file. As long as `FITfileR` is installed as shown below, the 
+package will work properly.
+
+<br />
+
+The Note is related to a similar issue. Each of the stated variables in the 
+Note are standard variables in the FIT SDK and will always be present given 
+the file has the extension `.fit`. This is therefore not an issue for the 
+functionality of the package. 
+---
+
+<br />
+<br />
+
 The intent behind this package will be to read in the .FIT files and give the user the opportunity
 to explore their data in a meaningful way, similar to what is experienced in native apps. This
 package heavily relies on ggplot2, dplyr, and plotly.

@@ -22,12 +22,12 @@ showTrainingEffect
 }
 \examples{
 #load the necessary file using the getFIT function
-fitFile <- getFit("Data/TestRun.fit")
+#fitFile <- getFit("Data/TestRun.fit")
 
 #plot aerobic training effect
-aerobic <- showTrainingEffect(fitFile, AnaerobicTE = F)
-aerobic
+#aerobic <- showTrainingEffect(fitFile, AnaerobicTE = F)
+#aerobic
 
 #plot anaerobic training effect
-anaerobic <- showTrainingEffect(fitFile, AnaerobicTE = T)
+#anaerobic <- showTrainingEffect(fitFile, AnaerobicTE = T)
 }

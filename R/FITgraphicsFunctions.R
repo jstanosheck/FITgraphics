@@ -14,11 +14,11 @@
 #'
 #' @examples
 #'
-#'file_path <- system.file("extdata", "TestRun.fit", package = "FITgraphics")
+#'#file_path <- system.file("extdata", "TestRun.fit", package = "FITgraphics")
 #'
-#' loaded_File <- getFit(file_path)
+#' #loaded_File <- getFit(file_path)
 #'
-#' loaded_File
+#' #loaded_File
 
 getFit <- function(fileName){
 #Compatibility Checks
@@ -236,14 +236,14 @@ mapFit <- function(fitFile){
 #'
 #' @examples
 #' #load the necessary file using the getFIT function
-#' fitFile <- getFit("Data/TestRun.fit")
+#' #fitFile <- getFit("Data/TestRun.fit")
 #'
 #' #plot aerobic training effect
-#' aerobic <- showTrainingEffect(fitFile, AnaerobicTE = F)
-#' aerobic
+#' #aerobic <- showTrainingEffect(fitFile, AnaerobicTE = F)
+#' #aerobic
 #'
 #' #plot anaerobic training effect
-#' anaerobic <- showTrainingEffect(fitFile, AnaerobicTE = T)
+#' #anaerobic <- showTrainingEffect(fitFile, AnaerobicTE = T)
 showTrainingEffect <- function(fitFile, AnaerobicTE = FALSE){
   #check that fitFile Aerobic and Anaerobic Training Effect exist
   if (!exists("total_anaerobic_training_effect", fitFile$session) ||
