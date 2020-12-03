@@ -205,7 +205,7 @@ mapFit <- function(fitFile){
   map <- coordinates %>%
     leaflet::leaflet() %>%
     leaflet::addTiles() %>%
-    leaflet::addPolylines(color = "#0E4AC2") %>%
+    leaflet::addPolylines(color = "#0E4AC2", opacity = 0.75) %>%
     #add point to the starting postion that is green and ending position is red
     leaflet::addCircleMarkers(lng = c(utils::head(coordinates, n=1)[1, 1],
                                       utils::tail(coordinates, n=1)[1, 1]),
