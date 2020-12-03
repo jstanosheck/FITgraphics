@@ -16,6 +16,8 @@ The Note is related to a similar issue. Each of the stated variables in the
 Note are standard variables in the FIT SDK and will always be present given 
 the file has the extension `.fit`. This is therefore not an issue for the 
 functionality of the package. 
+
+
 ---
 
 <br />
