@@ -67,7 +67,6 @@ getFit <- function(fileName){
 #'
 #' @export
 #' @import ggplot2
-#' @import devtools
 #'
 #' @return Returns a plot of the \code{varName} vs time. This The average and
 #' maximum values will be shown based on the input parameters. Each graph will
