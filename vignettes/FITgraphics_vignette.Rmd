@@ -63,10 +63,10 @@ the .fit extension.
 Here we will use both the TestRun.fit and TestRide.fit files to get their location.
 
 ```{r, cache=FALSE}
-file_location_run <- system.file("Data", "TestRun.fit", 
+file_location_run <- system.file("extdata", "TestRun.fit", 
                              package = "FITgraphics")
 
-file_location_ride <- system.file("Data", "TestRide.fit",
+file_location_ride <- system.file("extdata", "TestRide.fit",
                                   package = "FITgraphics")
 ```
 
