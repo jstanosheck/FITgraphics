@@ -11,7 +11,6 @@ available on CRAN. Since this is the case, the package is not added to import
 in the DESCRIPTION file. As long as `FITfileR` is installed as shown below, the 
 package will work properly.
 
-<br />
 
 The Note is related to a similar issue. Each of the stated variables in the 
 Note are standard variables in the FIT SDK and will always be present given 
