@@ -158,21 +158,21 @@ plotFit <- function(fitFile, varName, showAverage = FALSE, showMax = FALSE){
     ggtitle(toupper(sprintf('%s vs. Time', varName)))
 
   if (showAverage){
-    #output average of dataVector
-    average <- mean(dataVector)
+    #output average of dataVector remove all NA values
+    average <- mean(dataVector, na.rm = TRUE)
     #add the line for the average value to the plot
     g <- g + geom_hline(yintercept = average, color = "black")
     #add annotation for the average value label
     g <- g + geom_label(aes(x = timestamp[floor(length(timestamp) * 0.25)],
-                            y = max(dataVector) * 0.9,
+                            y = max(dataVector, na.rm = TRUE) * 0.9,
                             label = sprintf("%.2f \n Average %s", average, varName)))
   }
   if (showMax){
     #find the max value of dataVector
-    max_output <- max(dataVector)
+    max_output <- max(dataVector, na.rm = TRUE)
     #add annotation for the max value label
     g <- g + geom_label(aes(x = timestamp[floor(length(timestamp) * 0.75)],
-                            y = max(dataVector) * 0.9,
+                            y = max(dataVector, na.rm = TRUE) * 0.9,
                             label = sprintf("%.2f \n Max %s",
                                             max_output, varName)))
   }

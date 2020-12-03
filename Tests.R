@@ -134,3 +134,7 @@ test_fit <- getFit("Data/TestRun.fit")
 #graph the speed graph with showAverage = FALSE
 plotFit(test_fit, "distance")
 
+#test the ride file
+ride_test <- getFit("Data/TestRide.fit")
+
+plotFit(ride_test, "power", showMax = T)

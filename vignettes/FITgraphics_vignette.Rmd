@@ -133,3 +133,10 @@ The plot axis, title, units, and graph color will all change based on the
 
 Any other inputs for `varName` that are in the `"records"` will all be plotted 
 with the same plot color and an "Unknown" units.
+
+As an example of a different plotting parameters, we can use the rideFile to 
+plot the power. 
+
+```{r, cache=TRUE, fig.align='center', fig.height=4, fig.width=6}
+plotFit(rideFile, "power")
+```
