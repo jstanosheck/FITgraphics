@@ -1,7 +1,7 @@
 Package: FITgraphics
 Type: Package
 Title: FITgraphics
-Version: 0.1.0
+Version: 1.0.0
 Author: person(first = "Jacob", last = "Stanosheck",
         role = c("aut", "cre"),
         email = "jstanosheck@tamu.edu")
